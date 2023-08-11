@@ -16,7 +16,7 @@ public class TransferToCardTest {
     DashboardPage dashboardPage;
 
     @BeforeEach
-    void setUp () {
+    void setUp() {
         var loginPage = open("http://localhost:9999/", LoginUserPage.class);
         var autoInfo = getAutoInfo();
         var verificationPage = loginPage.validLogin(autoInfo);
@@ -35,11 +35,11 @@ public class TransferToCardTest {
         var expectedBalance01 = balanceCard01 - amountTransfer;
         var expectedBalance02 = balanceCard02 + amountTransfer;
         var transferPage = dashboardPage.selectCardToTransfer(card02);
-        dashboardPage = transferPage.makeValidTransfer(String.valueOf(amountTransfer),card01);
+        dashboardPage = transferPage.makeValidTransfer(String.valueOf(amountTransfer), card01);
         var actualBalance01 = dashboardPage.getCardBalance(card01);
         var actualBalance02 = dashboardPage.getCardBalance(card02);
-        assertEquals(expectedBalance01,actualBalance01);
-        assertEquals(expectedBalance02,actualBalance02);
+        assertEquals(expectedBalance01, actualBalance01);
+        assertEquals(expectedBalance02, actualBalance02);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class TransferToCardTest {
         transferPage.findError("Ошибка");
         var actualBalance01 = dashboardPage.getCardBalance(card01);
         var actualBalance02 = dashboardPage.getCardBalance(card02);
-        assertEquals(balanceCard01,actualBalance01);
-        assertEquals(balanceCard02,actualBalance02);
+        assertEquals(balanceCard01, actualBalance01);
+        assertEquals(balanceCard02, actualBalance02);
     }
 }

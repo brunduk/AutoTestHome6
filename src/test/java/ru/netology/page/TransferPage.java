@@ -14,29 +14,30 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class TransferPage {
 
-        public SelenideElement head = $(byText("Пополнение карты"));
-        public SelenideElement amount = $("[data-test-id=amount] input");
-        public SelenideElement from = $("[data-test-id=from] input");
-        public SelenideElement transferButton = $("[data-test-id=action-transfer]");
-        public SelenideElement cancelButton = $("[data-test-id=cation-cancel]");
-        public SelenideElement errorMessage = $("[data-test-id=error-notification]");
+    public SelenideElement head = $(byText("Пополнение карты"));
+    public SelenideElement amount = $("[data-test-id=amount] input");
+    public SelenideElement from = $("[data-test-id=from] input");
+    public SelenideElement transferButton = $("[data-test-id=action-transfer]");
+    public SelenideElement cancelButton = $("[data-test-id=cation-cancel]");
+    public SelenideElement errorMessage = $("[data-test-id=error-notification]");
 
     public TransferPage() {
         head.shouldBe(visible);
     }
 
 
-    public void makeTransfer(String transferredAmount, DataHelper.CardInfo cardInfo){
+    public void makeTransfer(String transferredAmount, DataHelper.CardInfo cardInfo) {
         amount.setValue(transferredAmount);
         from.setValue(cardInfo.getCardNumber());
         transferButton.click();
     }
-    public DashboardPage makeValidTransfer(String transferredAmount, DataHelper.CardInfo cardInfo){
-        makeTransfer(transferredAmount,cardInfo);
+
+    public DashboardPage makeValidTransfer(String transferredAmount, DataHelper.CardInfo cardInfo) {
+        makeTransfer(transferredAmount, cardInfo);
         return new DashboardPage();
     }
 
-    public void  findError(String expectedText){
+    public void findError(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }

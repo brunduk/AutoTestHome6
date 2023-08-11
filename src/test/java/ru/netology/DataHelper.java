@@ -6,10 +6,13 @@ import java.util.Random;
 
 public class DataHelper {
     static Random random = new Random();
-    private DataHelper(){
+
+    private DataHelper() {
     }
-    public static VerificationCode getVerificationCode(){
-        return new VerificationCode("12345");}
+
+    public static VerificationCode getVerificationCode() {
+        return new VerificationCode("12345");
+    }
 
     public static AutoInfo getAutoInfo() {
         return new AutoInfo("vasya", "qwerty123");
